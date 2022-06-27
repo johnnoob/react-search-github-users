@@ -20,17 +20,16 @@ ReactFC.fcRoot(FusionCharts, Chart, FusionTheme)
 // STEP 4 - Creating the DOM element to pass the react-fusioncharts component
 const ChartComponent = ({ data }) => {
   const chartConfigs = {
-    type: 'column3d', // The chart type
+    type: 'pie2d', // The chart type
     width: '100%', // Width of the chart
     height: '400', // Height of the chart
     dataFormat: 'json', // Data type
     dataSource: {
       // Chart Configuration
       chart: {
-        caption: '最受歡迎',
-        // theme: 'fusion',
-        yAxisName: '星星數',
-        xAxisName: '儲存庫名稱',
+        caption: '語言',
+        theme: 'fusion',
+        decimals: 0,
       },
       // Chart Data
       data,

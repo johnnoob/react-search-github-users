@@ -1,10 +1,33 @@
-import React from 'react';
-import styled from 'styled-components';
-import { useAuth0 } from '@auth0/auth0-react';
+import React from 'react'
+import styled from 'styled-components'
+import { useAuth0 } from '@auth0/auth0-react'
 
 const Navbar = () => {
-  return <h2>navbar component</h2>;
-};
+  const {
+    user,
+    isAuthenticated,
+    isLoading,
+    loginWithRedirect,
+    logout,
+  } = useAuth0()
+
+  const isUser = isAuthenticated && user
+  return (
+    <Wrapper>
+      {isUser && user.picture && <img src={user.picture} alt={user.name} />}
+      {isUser && user.name && (
+        <h4>
+          <strong>歡迎，{user.name.toUpperCase()}</strong>
+        </h4>
+      )}
+      {isUser && (
+        <button onClick={() => logout({ returnTo: window.location.origin })}>
+          登出
+        </button>
+      )}
+    </Wrapper>
+  )
+}
 
 const Wrapper = styled.nav`
   padding: 1.5rem;
@@ -35,6 +58,6 @@ const Wrapper = styled.nav`
     color: var(--clr-grey-5);
     cursor: pointer;
   }
-`;
+`
 
-export default Navbar;
+export default Navbar
